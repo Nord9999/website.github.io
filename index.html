@@ -73,6 +73,11 @@
             display: flex;
             list-style: none;
             gap: 25px;
+            position: relative;
+        }
+        
+        nav ul li {
+            position: relative;
         }
         
         nav ul li a {
@@ -82,12 +87,65 @@
             padding: 8px 12px;
             border-radius: 4px;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         
         nav ul li a:hover {
             background: rgba(255,255,255,0.15);
         }
         
+        /* 下拉菜单样式 */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+        
+        nav ul li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown li {
+            width: 100%;
+        }
+        
+        .dropdown li a {
+            color: var(--dark);
+            padding: 12px 20px;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+        
+        .dropdown li a:hover {
+            background: #f0f4f8;
+            color: var(--primary);
+            padding-left: 25px;
+        }
+        
+        .dropdown li a i {
+            width: 20px;
+            text-align: center;
+            color: var(--accent);
+        }
+        
+        /* 语言切换按钮 */
         .language-toggle {
             background: rgba(255,255,255,0.1);
             border: none;
@@ -332,6 +390,72 @@
             font-size: 0.9rem;
         }
         
+        /* 微信二维码样式 */
+        .wechat-qr {
+            margin-top: 25px;
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            max-width: 250px;
+        }
+        
+        .wechat-qr-title {
+            font-weight: 500;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .qr-code {
+            width: 160px;
+            height: 160px;
+            background: #fff;
+            margin: 0 auto;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .qr-code img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .qr-placeholder {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(45deg, #07C160 25%, #fff 25%, #fff 75%, #07C160 75%),
+                        linear-gradient(45deg, #07C160 25%, #fff 25%, #fff 75%, #07C160 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .qr-placeholder::before {
+            content: "微信二维码";
+            position: absolute;
+            font-size: 12px;
+            color: #07C160;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.4;
+            padding: 0 10px;
+        }
+        
+        .qr-placeholder::after {
+            content: "WeChat QR Code";
+            position: absolute;
+            font-size: 8px;
+            color: #07C160;
+            bottom: 10px;
+        }
+        
         /* 响应式设计 */
         @media (max-width: 992px) {
             .about-content {
@@ -367,6 +491,23 @@
             .about, .services {
                 padding: 70px 0;
             }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .wechat-qr {
+                max-width: 100%;
+            }
+            
+            /* 移动设备隐藏下拉菜单 */
+            .dropdown {
+                display: none;
+            }
+            
+            nav ul li a i.fa-chevron-down {
+                display: none;
+            }
         }
         
         /* 语言切换效果 */
@@ -397,7 +538,15 @@
                 <ul>
                     <li><a href="#home" class="active">首页</a></li>
                     <li><a href="#about">关于我们</a></li>
-                    <li><a href="#services">服务项目</a></li>
+                    <li class="has-dropdown">
+                        <a href="#services">服务项目 <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="immigration.html"><i class="fas fa-passport"></i> 移民服务</a></li>
+                            <li><a href="real-estate.html"><i class="fas fa-home"></i> 房地产投资咨询</a></li>
+                            <li><a href="education.html"><i class="fas fa-graduation-cap"></i> 留学与教育规划</a></li>
+                            <li><a href="local-support.html"><i class="fas fa-hands-helping"></i> 本地事务协助</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#contact">联系我们</a></li>
                 </ul>
             </nav>
@@ -434,7 +583,7 @@
                         <h3>专业咨询公司</h3>
                         <p>Nord Capital LLC 是一家总部位于美国加利福尼亚州的专业咨询公司，致力于为全球华人家庭提供全面的移民规划、房地产投资顾问、留学申请指导以及本地事务协助服务。</p>
                         <p>我们依托中美双平台资源，为客户量身定制跨境解决方案，帮助您实现移居、投资与发展的多重目标。</p>
-                        <p>我们秉持“专业、诚信、高效”的服务理念，配备具有丰富经验的顾问团队，在美国、加拿大及欧洲多国均有合作资源。Nord Capital LLC 不仅是您值得信赖的国际服务伙伴，更是您迈向全球生活的重要桥梁。</p>
+                        <p>我们秉持"专业、诚信、高效"的服务理念，配备具有丰富经验的顾问团队，在美国、加拿大及欧洲多国均有合作资源。Nord Capital LLC 不仅是您值得信赖的国际服务伙伴，更是您迈向全球生活的重要桥梁。</p>
                     </div>
                     <div class="lang-en">
                         <h3>Professional Consulting Firm</h3>
@@ -574,7 +723,7 @@
                     <h3 class="lang-en">Contact Us</h3>
                     <ul class="contact-info">
                         <li><i class="fas fa-map-marker-alt"></i> <span class="lang-zh">美国加利福尼亚州</span><span class="lang-en">California, USA</span></li>
-                        <li><i class="fas fa-phone"></i> 6264102909</li>
+                        <li><i class="fas fa-phone"></i>6264102909</li>
                         <li><i class="fas fa-envelope"></i> graceli0628@gmail.com</li>
                         <li><i class="fas fa-clock"></i> <span class="lang-zh">周一至周五: 9:00 - 18:00</span><span class="lang-en">Mon-Fri: 9:00 - 18:00</span></li>
                     </ul>
@@ -585,18 +734,29 @@
                     <h3 class="lang-en">Follow Us</h3>
                     <p class="lang-zh">通过社交媒体获取最新资讯</p>
                     <p class="lang-en">Get the latest updates through social media</p>
-                    <div class="social-icons" style="display: flex; gap: 15px; margin-top: 20px;">
+                    <div class="social-icons" style="display: flex; gap: 15px; margin-top: 10px; margin-bottom: 15px;">
                         <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
                         <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
                         <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
                         <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-weixin"></i></a>
                     </div>
+                    
+                    <!-- 微信二维码部分 -->
+                    <div class="wechat-qr">
+                        <div class="lang-zh wechat-qr-title">扫码添加微信</div>
+                        <div class="lang-en wechat-qr-title">Scan to add WeChat</div>
+                        <div class="qr-code">
+                           <!-- <div class="qr-placeholder"></div> -->
+                            <!-- 实际使用时替换为真实二维码图片 -->
+                             <img src="兰姐二维码.jpg" alt=""> 
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <div class="lang-zh">&copy; 2023 Nord Capital LLC. 保留所有权利。</div>
-                <div class="lang-en">&copy; 2023 Nord Capital LLC. All rights reserved.</div>
+                <div class="lang-zh">&copy; 2025 Nord Capital LLC. 保留所有权利。</div>
+                <div class="lang-en">&copy; 2025 Nord Capital LLC. All rights reserved.</div>
             </div>
         </div>
     </footer>
@@ -626,17 +786,19 @@
         });
         
         // 导航平滑滚动
-        document.querySelectorAll('nav a').forEach(anchor => {
+        document.querySelectorAll('nav a:not(.dropdown a)').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                window.scrollTo({
-                    top: targetElement.offsetTop - 70,
-                    behavior: 'smooth'
-                });
+                if (targetId.startsWith('#')) {
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
         
