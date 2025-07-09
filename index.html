@@ -96,7 +96,7 @@
             background: rgba(255,255,255,0.15);
         }
         
-        /* 下拉菜单样式 */
+        /* 下拉菜单样式 - 优化间距 */
         .dropdown {
             position: absolute;
             top: 100%;
@@ -111,6 +111,7 @@
             visibility: hidden;
             transform: translateY(10px);
             transition: var(--transition);
+            flex-direction: column; /* 确保垂直排列 */
         }
         
         nav ul li:hover .dropdown {
@@ -125,7 +126,7 @@
         
         .dropdown li a {
             color: var(--dark);
-            padding: 12px 20px;
+            padding: 10px 20px; /* 减小了上下内边距 */
             border-radius: 0;
             display: flex;
             align-items: center;
@@ -290,6 +291,8 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             transition: var(--transition);
+            height: 100%;
+            position: relative;
         }
         
         .service-card:hover {
@@ -333,6 +336,22 @@
         .service-list li i {
             color: var(--accent);
             margin-right: 10px;
+        }
+        
+        /* 服务卡片链接 */
+        .service-link {
+            display: block;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .service-link:hover {
+            text-decoration: none;
+        }
+        
+        .service-link .service-card:hover .service-icon {
+            background: var(--accent);
         }
         
         /* 页脚 */
@@ -604,101 +623,109 @@
         <div class="container">
             <h2 class="section-title">服务项目</h2>
             <div class="services-grid">
-                <!-- 服务1 -->
-                <div class="service-card animate">
-                    <div class="service-icon">
-                        <i class="fas fa-passport"></i>
-                    </div>
-                    <div class="service-content">
-                        <div class="lang-zh">
-                            <h3>移民服务</h3>
-                            <ul class="service-list">
-                                <li><i class="fas fa-check-circle"></i> 美国移民项目</li>
-                                <li><i class="fas fa-check-circle"></i> 加拿大移民项目</li>
-                                <li><i class="fas fa-check-circle"></i> 欧洲移民项目（葡萄牙、希腊、马耳他等）</li>
-                            </ul>
+                <!-- 服务1 - 添加链接 -->
+                <a href="immigration.html" class="service-link">
+                    <div class="service-card animate">
+                        <div class="service-icon">
+                            <i class="fas fa-passport"></i>
                         </div>
-                        <div class="lang-en">
-                            <h3>Immigration Services</h3>
-                            <ul class="service-list">
-                                <li><i class="fas fa-check-circle"></i> U.S. immigration programs</li>
-                                <li><i class="fas fa-check-circle"></i> Canadian immigration services</li>
-                                <li><i class="fas fa-check-circle"></i> European immigration (Portugal, Greece, Malta, etc.)</li>
-                            </ul>
+                        <div class="service-content">
+                            <div class="lang-zh">
+                                <h3>移民服务</h3>
+                                <ul class="service-list">
+                                    <li><i class="fas fa-check-circle"></i> 美国移民项目</li>
+                                    <li><i class="fas fa-check-circle"></i> 加拿大移民项目</li>
+                                    <li><i class="fas fa-check-circle"></i> 欧洲移民项目（葡萄牙、希腊、马耳他等）</li>
+                                </ul>
+                            </div>
+                            <div class="lang-en">
+                                <h3>Immigration Services</h3>
+                                <ul class="service-list">
+                                    <li><i class="fas fa-check-circle"></i> U.S. immigration programs</li>
+                                    <li><i class="fas fa-check-circle"></i> Canadian immigration services</li>
+                                    <li><i class="fas fa-check-circle"></i> European immigration (Portugal, Greece, Malta, etc.)</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
                 
-                <!-- 服务2 -->
-                <div class="service-card animate" style="animation-delay: 0.2s">
-                    <div class="service-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <div class="service-content">
-                        <div class="lang-zh">
-                            <h3>房地产投资咨询</h3>
-                            <ul class="service-list">
-                                <li><i class="fas fa-check-circle"></i> 美国本地购房/投资咨询</li>
-                                <li><i class="fas fa-check-circle"></i> 房东租管服务（含翻译协助、文件审核）</li>
-                            </ul>
+                <!-- 服务2 - 添加链接 -->
+                <a href="real-estate.html" class="service-link">
+                    <div class="service-card animate" style="animation-delay: 0.2s">
+                        <div class="service-icon">
+                            <i class="fas fa-home"></i>
                         </div>
-                        <div class="lang-en">
-                            <h3>Real Estate Consulting</h3>
-                            <ul class="service-list">
-                                <li><i class="fas fa-check-circle"></i> Property purchase and investment in the U.S.</li>
-                                <li><i class="fas fa-check-circle"></i> Landlord services (translation, lease review)</li>
-                            </ul>
+                        <div class="service-content">
+                            <div class="lang-zh">
+                                <h3>房地产投资咨询</h3>
+                                <ul class="service-list">
+                                    <li><i class="fas fa-check-circle"></i> 美国本地购房/投资咨询</li>
+                                    <li><i class="fas fa-check-circle"></i> 房东租管服务（含翻译协助、文件审核）</li>
+                                </ul>
+                            </div>
+                            <div class="lang-en">
+                                <h3>Real Estate Consulting</h3>
+                                <ul class="service-list">
+                                    <li><i class="fas fa-check-circle"></i> Property purchase and investment in the U.S.</li>
+                                    <li><i class="fas fa-check-circle"></i> Landlord services (translation, lease review)</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
                 
-                <!-- 服务3 -->
-                <div class="service-card animate" style="animation-delay: 0.4s">
-                    <div class="service-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="service-content">
-                        <div class="lang-zh">
-                            <h3>留学与教育规划</h3>
-                            <ul class="service-list">
-                                <li><i class="fas fa-check-circle"></i> 美国初高中、大学申请指导</li>
-                                <li><i class="fas fa-check-circle"></i> 家庭教育咨询</li>
-                            </ul>
+                <!-- 服务3 - 添加链接 -->
+                <a href="education.html" class="service-link">
+                    <div class="service-card animate" style="animation-delay: 0.4s">
+                        <div class="service-icon">
+                            <i class="fas fa-graduation-cap"></i>
                         </div>
-                        <div class="lang-en">
-                            <h3>Education Planning</h3>
-                            <ul class="service-list">
-                                <li><i class="fas fa-check-circle"></i> School and university application guidance</li>
-                                <li><i class="fas fa-check-circle"></i> Family education consultation</li>
-                            </ul>
+                        <div class="service-content">
+                            <div class="lang-zh">
+                                <h3>留学与教育规划</h3>
+                                <ul class="service-list">
+                                    <li><i class="fas fa-check-circle"></i> 美国初高中、大学申请指导</li>
+                                    <li><i class="fas fa-check-circle"></i> 家庭教育咨询</li>
+                                </ul>
+                            </div>
+                            <div class="lang-en">
+                                <h3>Education Planning</h3>
+                                <ul class="service-list">
+                                    <li><i class="fas fa-check-circle"></i> School and university application guidance</li>
+                                    <li><i class="fas fa-check-circle"></i> Family education consultation</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
                 
-                <!-- 服务4 -->
-                <div class="service-card animate" style="animation-delay: 0.6s">
-                    <div class="service-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <div class="service-content">
-                        <div class="lang-zh">
-                            <h3>本地事务协助</h3>
-                            <ul class="service-list">
-                                <li><i class="fas fa-check-circle"></i> 驾照申请指导</li>
-                                <li><i class="fas fa-check-circle"></i> 医疗保险咨询</li>
-                                <li><i class="fas fa-check-circle"></i> 社区融入支持</li>
-                            </ul>
+                <!-- 服务4 - 添加链接 -->
+                <a href="local-support.html" class="service-link">
+                    <div class="service-card animate" style="animation-delay: 0.6s">
+                        <div class="service-icon">
+                            <i class="fas fa-hands-helping"></i>
                         </div>
-                        <div class="lang-en">
-                            <h3>Local Support Services</h3>
-                            <ul class="service-list">
-                                <li><i class="fas fa-check-circle"></i> Driver's license application assistance</li>
-                                <li><i class="fas fa-check-circle"></i> Healthcare and insurance support</li>
-                                <li><i class="fas fa-check-circle"></i> Community integration guidance</li>
-                            </ul>
+                        <div class="service-content">
+                            <div class="lang-zh">
+                                <h3>本地事务协助</h3>
+                                <ul class="service-list">
+                                    <li><i class="fas fa-check-circle"></i> 驾照申请指导</li>
+                                    <li><i class="fas fa-check-circle"></i> 医疗保险咨询</li>
+                                    <li><i class="fas fa-check-circle"></i> 社区融入支持</li>
+                                </ul>
+                            </div>
+                            <div class="lang-en">
+                                <h3>Local Support Services</h3>
+                                <ul class="service-list">
+                                    <li><i class="fas fa-check-circle"></i> Driver's license application assistance</li>
+                                    <li><i class="fas fa-check-circle"></i> Healthcare and insurance support</li>
+                                    <li><i class="fas fa-check-circle"></i> Community integration guidance</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
