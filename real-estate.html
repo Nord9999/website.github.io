@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>房地产投资咨询 - Nord Capital LLC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2a5d8a;
+            --secondary: #3a7ca5;
+            --accent: #4c9bd3;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #28a745;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans SC', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+            padding-top: 80px;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部导航 */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            position: relative;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        nav ul li a.active {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* 下拉菜单样式 */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            flex-direction: column;
+        }
+
+        nav ul li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown li {
+            width: 100%;
+        }
+
+        .dropdown li a {
+            color: var(--dark);
+            padding: 10px 20px;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .dropdown li a:hover {
+            background: #f0f4f8;
+            color: var(--primary);
+            padding-left: 25px;
+        }
+
+        .dropdown li a i {
+            width: 20px;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        /* 语言切换按钮 */
+        .language-toggle {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .language-toggle:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* 服务标签导航 */
+        .service-tabs {
+            display: flex;
+            justify-content: center;
+            margin: 60px 0 80px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .service-tab {
+            background: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .service-tab:hover, .service-tab.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .service-tab.active {
+            border-color: white;
+        }
+
+        /* 页面横幅 */
+        .page-hero {
+            background: linear-gradient(rgba(42,93,138,0.85), rgba(58,124,165,0.9)), url('https://images.unsplash.com/photo-1560185127-6ed189bf02f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding-top: 70px;
+        }
+
+        .page-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            background: var(--light);
+        }
+
+        /* 其余样式与原文保持一致（省略） */
+
+            /* 服务介绍 */
+            .service-intro {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+            font-size: 2.2rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .intro-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .intro-text {
+            flex: 1;
+        }
+        
+        .intro-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .intro-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .intro-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1560185127-6ed189bf02f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        /* 投资市场分析 */
+        .market-analysis {
+            padding: 100px 0;
+            background: #f0f4f8;
+        }
+        
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .analysis-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            height: 100%;
+        }
+        
+        .analysis-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .analysis-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .analysis-body {
+            padding: 25px;
+        }
+        
+        .analysis-features {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .analysis-features li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .analysis-features li i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+        
+        /* 服务区域 */
+        .services {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            height: 100%;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            background: var(--primary);
+            color: white;
+            font-size: 2.5rem;
+            padding: 30px 0;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .service-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            font-weight: 300;
+        }
+        
+        .service-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .service-list li i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+        
+        /* 投资流程 */
+        .process {
+            padding: 100px 0;
+            background: #f0f4f8;
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            text-align: center;
+            padding: 30px;
+            background: #f8fafc;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* 成功案例 */
+        .success-stories {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .story-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: var(--transition);
+        }
+        
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .story-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .story-content {
+            padding: 25px;
+        }
+        
+        .story-content h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .story-content p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        .story-location {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        /* 咨询表单 */
+        .consultation {
+            padding: 100px 0;
+            background: #f0f4f8;
+        }
+        
+        .consultation-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .consultation-info {
+            padding: 30px;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+        
+        .consultation-info h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .consultation-details {
+            list-style: none;
+            margin-bottom: 30px;
+            padding: 0;
+        }
+        
+        .consultation-details li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .consultation-form {
+            padding: 30px;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(76, 155, 211, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .submit-button:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* 页脚 */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .footer-column p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            padding: 8px 0;
+        }
+        
+        .footer-links li a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* 右下角客服二维码区域 */
+        .fixed-contact {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+            opacity: 0.95;
+        }
+        
+        .contact-item:hover {
+            opacity: 1;
+            transform: translateY(-5px);
+        }
+        
+        .contact-title {
+            background: var(--primary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px 20px 0 0;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .contact-qr {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            background: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            overflow: hidden;
+            font-size: 0.8rem;
+            color: #666;
+            text-align: center;
+        }
+        
+        .contact-text {
+            font-size: 0.9rem;
+            color: var(--dark);
+            text-align: center;
+            max-width: 150px;
+        }
+        
+        .contact-phone {
+            background: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .fixed-contact {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .consultation-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-hero {
+                height: auto;
+                padding: 120px 0 80px;
+            }
+            
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .fixed-contact {
+                flex-direction: row;
+                align-items: flex-end;
+                gap: 10px;
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .contact-item {
+                transform: scale(0.85);
+            }
+            
+            .contact-item:hover {
+                transform: scale(0.9) translateY(-5px);
+            }
+            
+            .contact-phone {
+                display: none;
+            }
+        }
+        
+        /* 语言切换效果 */
+        .lang-en {
+            display: none;
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-globe-americas logo-icon"></i>
+                <h1>Nord Capital LLC</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#about">关于我们</a></li>
+                    <li class="has-dropdown">
+                        <a href="#services" class="active">服务项目 <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="immigration.html"><i class="fas fa-passport"></i> 移民服务</a></li>
+                            <li><a href="real-estate.html" class="active"><i class="fas fa-home"></i> 房地产投资咨询</a></li>
+                            <li><a href="education.html"><i class="fas fa-graduation-cap"></i> 留学与教育规划</a></li>
+                            <li><a href="local-support.html"><i class="fas fa-hands-helping"></i> 本地事务协助</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#contact">联系我们</a></li>
+                </ul>
+            </nav>
+            <button class="language-toggle" id="langToggle">
+                <i class="fas fa-language"></i>
+                <span>English</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 服务标签导航 -->
+    <div class="container">
+        <div class="service-tabs">
+            <a href="immigration.html" class="service-tab">移民服务</a>
+            <a href="real-estate.html" class="service-tab active">房地产投资咨询</a>
+            <a href="education.html" class="service-tab">留学与教育规划</a>
+            <a href="local-support.html" class="service-tab">本地事务协助</a>
+        </div>
+    </div>
+
+    <!-- 页面横幅 -->
+    <section class="page-hero">
+        <div class="container page-hero-content">
+            <div class="lang-zh">
+                <h1>专业房地产投资咨询</h1>
+                <p>全球资产配置，智慧投资决策，助您实现财富增值与保值</p>
+                <button class="cta-button" onclick="scrollToSection('consultation')">免费咨询</button>
+            </div>
+            <div class="lang-en">
+                <h1>Professional Real Estate Investment Consulting</h1>
+                <p>Global asset allocation, smart investment decisions, helping you achieve wealth appreciation and preservation</p>
+                <button class="cta-button" onclick="scrollToSection('consultation')">Free Consultation</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务介绍 -->
+    <section class="service-intro" id="intro">
+        <div class="container">
+            <h2 class="section-title">房地产投资服务概述</h2>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <div class="lang-zh">
+                        <h3>全球房地产投资专家</h3>
+                        <p>Nord Capital LLC 专注于为全球华人投资者提供专业的房地产投资咨询服务。我们的团队深入了解美国、加拿大、欧洲等主要房地产市场的投资机会，帮助客户制定最佳投资策略。</p>
+                        <p>我们提供从市场分析、项目筛选、尽职调查到交易完成的全程服务，确保每一笔投资都经过充分论证和专业把关。</p>
+                    </div>
+                    <div class="lang-en">
+                        <h3>Global Real Estate Investment Experts</h3>
+                        <p>Nord Capital LLC specializes in providing professional real estate investment consulting services for Chinese investors worldwide.</p>
+                        <p>We provide comprehensive services from market analysis, project screening, due diligence to transaction completion.</p>
+                    </div>
+                </div>
+                <div class="intro-image">
+                    <div class="lang-zh">全球视野 · 专业投资</div>
+                    <div class="lang-en">Global Perspective · Professional Investment</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 投资市场分析 -->
+    <section class="market-analysis" id="analysis">
+        <div class="container">
+            <h2 class="section-title">全球投资市场分析</h2>
+            <div class="analysis-grid">
+                <div class="analysis-card animate">
+                    <div class="analysis-header">
+                        <h3 class="lang-zh">美国房地产市场</h3>
+                        <h3 class="lang-en">US Real Estate Market</h3>
+                    </div>
+                    <div class="analysis-body">
+                        <ul class="analysis-features">
+                            <div class="lang-zh">
+                                <li><i class="fas fa-chart-line"></i> 稳定增长的市场</li>
+                                <li><i class="fas fa-dollar-sign"></i> 美元资产避险属性</li>
+                                <li><i class="fas fa-home"></i> 高流动性的房产</li>
+                                <li><i class="fas fa-graduation-cap"></i> 学区房投资回报高</li>
+                            </div>
+                            <div class="lang-en">
+                                <li><i class="fas fa-chart-line"></i> Stable growth market</li>
+                                <li><i class="fas fa-dollar-sign"></i> USD safe-haven asset</li>
+                                <li><i class="fas fa-home"></i> High liquidity properties</li>
+                                <li><i class="fas fa-graduation-cap"></i> High ROI school districts</li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="analysis-card animate" style="animation-delay: 0.2s">
+                    <div class="analysis-header">
+                        <h3 class="lang-zh">加拿大房地产市场</h3>
+                        <h3 class="lang-en">Canadian Real Estate Market</h3>
+                    </div>
+                    <div class="analysis-body">
+                        <ul class="analysis-features">
+                            <div class="lang-zh">
+                                <li><i class="fas fa-shield-alt"></i> 政治经济稳定</li>
+                                <li><i class="fas fa-leaf"></i> 宜居环境</li>
+                                <li><i class="fas fa-users"></i> 移民需求旺盛</li>
+                                <li><i class="fas fa-coins"></i> 租金回报稳定</li>
+                            </div>
+                            <div class="lang-en">
+                                <li><i class="fas fa-shield-alt"></i> Political stability</li>
+                                <li><i class="fas fa-leaf"></i> Livable environment</li>
+                                <li><i class="fas fa-users"></i> Strong immigration demand</li>
+                                <li><i class="fas fa-coins"></i> Stable rental returns</li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="analysis-card animate" style="animation-delay: 0.4s">
+                    <div class="analysis-header">
+                        <h3 class="lang-zh">欧洲房地产市场</h3>
+                        <h3 class="lang-en">European Real Estate Market</h3>
+                    </div>
+                    <div class="analysis-body">
+                        <ul class="analysis-features">
+                            <div class="lang-zh">
+                                <li><i class="fas fa-passport"></i> 黄金签证项目</li>
+                                <li><i class="fas fa-euro-sign"></i> 欧元计价资产</li>
+                                <li><i class="fas fa-history"></i> 历史文化价值</li>
+                                <li><i class="fas fa-percentage"></i> 高租金收益率</li>
+                            </div>
+                            <div class="lang-en">
+                                <li><i class="fas fa-passport"></i> Golden visa programs</li>
+                                <li><i class="fas fa-euro-sign"></i> Euro-denominated assets</li>
+                                <li><i class="fas fa-history"></i> Historical value</li>
+                                <li><i class="fas fa-percentage"></i> High rental yields</li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务项目 -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">投资服务项目</h2>
+            <div class="services-grid">
+                <div class="service-card animate">
+                    <div class="service-icon">
+                        <i class="fas fa-flag-usa"></i>
+                    </div>
+                    <div class="service-content">
+                        <div class="lang-zh">
+                            <h3>美国房产投资</h3>
+                            <ul class="service-list">
+                                <li><i class="fas fa-check"></i> 住宅投资分析</li>
+                                <li><i class="fas fa-check"></i> 商业地产投资</li>
+                                <li><i class="fas fa-check"></i> 学区房投资</li>
+                                <li><i class="fas fa-check"></i> 度假屋投资</li>
+                            </ul>
+                        </div>
+                        <div class="lang-en">
+                            <h3>US Property Investment</h3>
+                            <ul class="service-list">
+                                <li><i class="fas fa-check"></i> Residential Investment Analysis</li>
+                                <li><i class="fas fa-check"></i> Commercial Real Estate</li>
+                                <li><i class="fas fa-check"></i> School District Investment</li>
+                                <li><i class="fas fa-check"></i> Vacation Home Investment</li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card animate" style="animation-delay: 0.2s">
+                    <div class="service-icon">
+                        <i class="fas fa-maple-leaf"></i>
+                    </div>
+                    <div class="service-content">
+                        <div class="lang-zh">
+                            <h3>加拿大房产投资</h3>
+                            <ul class="service-list">
+                                <li><i class="fas fa-check"></i> 多伦多房产投资</li>
+                                <li><i class="fas fa-check"></i> 温哥华房产投资</li>
+                                <li><i class="fas fa-check"></i> 蒙特利尔房产投资</li>
+                                <li><i class="fas fa-check"></i> 卡尔加里房产投资</li>
+                            </ul>
+                        </div>
+                        <div class="lang-en">
+                            <h3>Canadian Property Investment</h3>
+                            <ul class="service-list">
+                                <li><i class="fas fa-check"></i> Toronto Property Investment</li>
+                                <li><i class="fas fa-check"></i> Vancouver Property Investment</li>
+                                <li><i class="fas fa-check"></i> Montreal Property Investment</li>
+                                <li><i class="fas fa-check"></i> Calgary Property Investment</li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card animate" style="animation-delay: 0.4s">
+                    <div class="service-icon">
+                        <i class="fas fa-euro-sign"></i>
+                    </div>
+                    <div class="service-content">
+                        <div class="lang-zh">
+                            <h3>欧洲房产投资</h3>
+                            <ul class="service-list">
+                                <li><i class="fas fa-check"></i> 葡萄牙房产投资</li>
+                                <li><i class="fas fa-check"></i> 西班牙房产投资</li>
+                                <li><i class="fas fa-check"></i> 希腊房产投资</li>
+                                <li><i class="fas fa-check"></i> 英国房产投资</li>
+                            </ul>
+                        </div>
+                        <div class="lang-en">
+                            <h3>European Property Investment</h3>
+                            <ul class="service-list">
+                                <li><i class="fas fa-check"></i> Portugal Property Investment</li>
+                                <li><i class="fas fa-check"></i> Spain Property Investment</li>
+                                <li><i class="fas fa-check"></i> Greece Property Investment</li>
+                                <li><i class="fas fa-check"></i> UK Property Investment</li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card animate" style="animation-delay: 0.6s">
+                    <div class="service-icon">
+                        <i class="fas fa-globe-oceania"></i>
+                    </div>
+                    <div class="service-content">
+                        <div class="lang-zh">
+                            <h3>澳洲房产投资</h3>
+                            <ul class="service-list">
+                                <li><i class="fas fa-check"></i> 悉尼房产投资</li>
+                                <li><i class="fas fa-check"></i> 墨尔本房产投资</li>
+                                <li><i class="fas fa-check"></i> 布里斯班房产投资</li>
+                                <li><i class="fas fa-check"></i> 珀斯房产投资</li>
+                            </ul>
+                        </div>
+                        <div class="lang-en">
+                            <h3>Australian Property Investment</h3>
+                            <ul class="service-list">
+                                <li><i class="fas fa-check"></i> Sydney Property Investment</li>
+                                <li><i class="fas fa-check"></i> Melbourne Property Investment</li>
+                                <li><i class="fas fa-check"></i> Brisbane Property Investment</li>
+                                <li><i class="fas fa-check"></i> Perth Property Investment</li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 投资流程 -->
+    <section class="process" id="process">
+        <div class="container">
+            <h2 class="section-title">投资流程</h2>
+            <div class="process-steps">
+                <div class="step animate">
+                    <div class="step-number">1</div>
+                    <h3>需求分析</h3>
+                    <div class="lang-zh"><p>深入了解您的投资目标、预算和偏好</p></div>
+                    <div class="lang-en"><p>Understand your investment goals, budget and preferences</p></div>
+                </div>
+                <div class="step animate" style="animation-delay: 0.2s">
+                    <div class="step-number">2</div>
+                    <h3>市场研究</h3>
+                    <div class="lang-zh"><p>提供详细的市场分析和投资建议</p></div>
+                    <div class="lang-en"><p>Provide detailed market analysis and investment recommendations</p></div>
+                </div>
+                <div class="step animate" style="animation-delay: 0.4s">
+                    <div class="step-number">3</div>
+                    <h3>项目筛选</h3>
+                    <div class="lang-zh"><p>精选优质投资项目供您选择</p></div>
+                    <div class="lang-en"><p>Select high-quality investment projects</p></div>
+                </div>
+                <div class="step animate" style="animation-delay: 0.6s">
+                    <div class="step-number">4</div>
+                    <h3>尽职调查</h3>
+                    <div class="lang-zh"><p>进行全面项目评估与风险控制</p></div>
+                    <div class="lang-en"><p>Conduct due diligence and risk assessment</p></div>
+                </div>
+                <div class="step animate" style="animation-delay: 0.8s">
+                    <div class="step-number">5</div>
+                    <h3>交易完成</h3>
+                    <div class="lang-zh"><p>协助完成交易并提供后续管理</p></div>
+                    <div class="lang-en"><p>Assist with transaction and ongoing management</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成功案例 -->
+    <section class="success-stories" id="stories">
+        <div class="container">
+            <h2 class="section-title">成功案例</h2>
+            <div class="stories-grid">
+                <div class="story-card animate">
+                    <div class="story-image" style="background: linear-gradient(rgba(42,93,138,0.7), rgba(58,124,165,0.8)), url('https://images.unsplash.com/photo-1560185127-6ed189bf02f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;">
+                        <div class="lang-zh">美国加州房产投资</div>
+                        <div class="lang-en">California Property Investment</div>
+                    </div>
+                    <div class="story-content">
+                        <h3>王先生</h3>
+                        <div class="lang-zh">
+                            <p>在硅谷购买3套学区房，3年内增值45%，租金回报率8%。</p>
+                            <p>投资金额：$1,200,000</p>
+                            <p>当前市值：$1,740,000</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>Mr. Wang purchased 3 school district properties, appreciating 45% in 3 years.</p>
+                            <p>Investment: $1,200,000</p>
+                            <p>Current Value: $1,740,000</p>
+                        </div>
+                        <div class="story-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>旧金山湾区，美国</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="story-card animate" style="animation-delay: 0.2s">
+                    <div class="story-image" style="background: linear-gradient(rgba(58,124,165,0.7), rgba(42,93,138,0.8)), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;">
+                        <div class="lang-zh">加拿大多伦多房产投资</div>
+                        <div class="lang-en">Toronto Property Investment</div>
+                    </div>
+                    <div class="story-content">
+                        <h3>李女士</h3>
+                        <div class="lang-zh">
+                            <p>购买2套市中心公寓，2年内增值30%，租金回报率6.5%。</p>
+                            <p>投资金额：CAD $800,000</p>
+                            <p>当前市值：CAD $1,040,000</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>Ms. Li purchased 2 downtown condos, appreciating 30% in 2 years.</p>
+                            <p>Investment: CAD $800,000</p>
+                            <p>Current Value: CAD $1,040,000</p>
+                        </div>
+                        <div class="story-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>多伦多，加拿大</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="story-card animate" style="animation-delay: 0.4s">
+                    <div class="story-image" style="background: linear-gradient(rgba(76,155,211,0.7), rgba(42,93,138,0.8)), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;">
+                        <div class="lang-zh">葡萄牙里斯本房产投资</div>
+                        <div class="lang-en">Lisbon Property Investment</div>
+                    </div>
+                    <div class="story-content">
+                        <h3>张先生</h3>
+                        <div class="lang-zh">
+                            <p>通过黄金签证项目，购买3套公寓，年租金收益€35,000。</p>
+                            <p>投资金额：€500,000</p>
+                            <p>年租金收益：€35,000</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>Mr. Zhang purchased 3 Lisbon apartments through Golden Visa.</p>
+                            <p>Investment: €500,000</p>
+                            <p>Annual Rental Income: €35,000</p>
+                        </div>
+                        <div class="story-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>里斯本，葡萄牙</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 咨询表单 -->
+    <section class="consultation" id="consultation">
+        <div class="container">
+            <h2 class="section-title">投资咨询</h2>
+            <div class="consultation-container">
+                <div class="consultation-info">
+                    <div class="lang-zh">
+                        <h3>联系方式</h3>
+                        <p>无论您有任何问题或需要咨询，我们的专业顾问团队随时为您提供帮助。</p>
+                        <ul class="consultation-details">
+                            <li><i class="fas fa-map-marker-alt"></i> 地址：123 Main Street, San Francisco, CA 94105, USA</li>
+                            <li><i class="fas fa-phone"></i> 电话：+1 (415) 123-4567</li>
+                            <li><i class="fas fa-envelope"></i> 邮箱：info@nordcapital.com</li>
+                            <li><i class="fas fa-clock"></i> 工作时间：周一至周五 9:00-18:00（太平洋时间）</li>
+                        </ul>
+                        <h3>关注我们</h3>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-weixin"></i></a>
+                            <a href="#"><i class="fab fa-weibo"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                    </div>
+                    <div class="lang-en">
+                        <h3>Contact Information</h3>
+                        <p>Our professional consultants are ready to assist you with any questions or inquiries.</p>
+                        <ul class="consultation-details">
+                            <li><i class="fas fa-map-marker-alt"></i> Address: 123 Main Street, San Francisco, CA 94105, USA</li>
+                            <li><i class="fas fa-phone"></i> Phone: +1 (415) 123-4567</li>
+                            <li><i class="fas fa-envelope"></i> Email: info@nordcapital.com</li>
+                            <li><i class="fas fa-clock"></i> Hours: Mon-Fri 9:00-18:00 (Pacific Time)</li>
+                        </ul>
+                        <h3>Follow Us</h3>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-weixin"></i></a>
+                            <a href="#"><i class="fab fa-weibo"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="consultation-form">
+                    <div class="lang-zh">
+                        <h3>投资咨询表单</h3>
+                        <form id="consultationForm" action="https://formspree.io/f/mwpqlqoj" method="POST">
+                            <div class="form-group">
+                                <label for="name">姓名</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">邮箱</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">电话</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="budget">投资预算</label>
+                                <select id="budget" name="budget">
+                                    <option value="">请选择预算范围</option>
+                                    <option value="under-500k">$50万以下</option>
+                                    <option value="500k-1m">$50万-$100万</option>
+                                    <option value="1m-2m">$100万-$200万</option>
+                                    <option value="over-2m">$200万以上</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="location">投资地区</label>
+                                <select id="location" name="location">
+                                    <option value="">请选择投资地区</option>
+                                    <option value="us">美国</option>
+                                    <option value="canada">加拿大</option>
+                                    <option value="europe">欧洲</option>
+                                    <option value="australia">澳洲</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">投资需求</label>
+                                <textarea id="message" name="message" placeholder="请详细描述您的投资需求和目标..." required></textarea>
+                            </div>
+                            <button type="submit" class="submit-button">提交咨询</button>
+                        </form>
+                    </div>
+                    <div class="lang-en">
+                        <h3>Investment Inquiry Form</h3>
+                        <form id="consultationFormEn" action="https://formspree.io/f/mwpqlqoj" method="POST">
+                            <div class="form-group">
+                                <label for="nameEn">Name</label>
+                                <input type="text" id="nameEn" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="emailEn">Email</label>
+                                <input type="email" id="emailEn" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneEn">Phone</label>
+                                <input type="tel" id="phoneEn" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="budgetEn">Investment Budget</label>
+                                <select id="budgetEn" name="budget">
+                                    <option value="">Select Budget Range</option>
+                                    <option value="under-500k">Under $500K</option>
+                                    <option value="500k-1m">$500K-$1M</option>
+                                    <option value="1m-2m">$1M-$2M</option>
+                                    <option value="over-2m">Over $2M</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="locationEn">Investment Location</label>
+                                <select id="locationEn" name="location">
+                                    <option value="">Select Location</option>
+                                    <option value="us">United States</option>
+                                    <option value="canada">Canada</option>
+                                    <option value="europe">Europe</option>
+                                    <option value="australia">Australia</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="messageEn">Investment Requirements</label>
+                                <textarea id="messageEn" name="message" placeholder="Please describe your investment needs and goals..." required></textarea>
+                            </div>
+                            <button type="submit" class="submit-button">Submit Inquiry</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="lang-zh">
+                        <h3>Nord Capital LLC</h3>
+                        <p>专业跨境咨询公司，致力于为全球华人家庭提供移民规划、房地产投资、留学申请及本地事务协助等全方位服务。</p>
+                    </div>
+                    <div class="lang-en">
+                        <h3>Nord Capital LLC</h3>
+                        <p>A professional cross-border consulting firm dedicated to providing comprehensive services for Chinese families worldwide.</p>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <div class="lang-zh">
+                        <h3>服务项目</h3>
+                        <ul class="footer-links">
+                            <li><a href="immigration.html">移民服务</a></li>
+                            <li><a href="real-estate.html">房地产投资咨询</a></li>
+                            <li><a href="education.html">留学与教育规划</a></li>
+                            <li><a href="local-support.html">本地事务协助</a></li>
+                        </ul>
+                    </div>
+                    <div class="lang-en">
+                        <h3>Services</h3>
+                        <ul class="footer-links">
+                            <li><a href="immigration.html">Immigration Services</a></li>
+                            <li><a href="real-estate.html">Real Estate Investment</a></li>
+                            <li><a href="education.html">Study Abroad & Education</a></li>
+                            <li><a href="local-support.html">Local Support Services</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <div class="lang-zh">
+                        <h3>快速链接</h3>
+                        <ul class="footer-links">
+                            <li><a href="index.html">首页</a></li>
+                            <li><a href="index.html#about">关于我们</a></li>
+                            <li><a href="#services">服务项目</a></li>
+                            <li><a href="index.html#contact">联系我们</a></li>
+                        </ul>
+                    </div>
+                    <div class="lang-en">
+                        <h3>Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.html#about">About Us</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <div class="lang-zh">
+                        <h3>法律声明</h3>
+                        <p>© 2025 Nord Capital LLC. 保留所有权利。</p>
+                        <p><a href="#">隐私政策</a> | <a href="#">服务条款</a></p>
+                    </div>
+                    <div class="lang-en">
+                        <h3>Legal</h3>
+                        <p>© 2025 Nord Capital LLC. All Rights Reserved.</p>
+                        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="lang-zh">专业跨境咨询，开启全球生活</div>
+                <div class="lang-en">Professional Cross-Border Consulting for Global Living</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 右下角客服二维码 -->
+    <div class="fixed-contact">
+        <div class="contact-item">
+            <div class="contact-title">
+                <i class="fab fa-weixin"></i>
+                <span class="lang-zh">微信咨询</span>
+                <span class="lang-en">WeChat</span>
+            </div>
+            <div class="contact-qr">
+                <div class="qr-code">
+                    <span class="lang-zh">扫码添加微信</span>
+                    <span class="lang-en">Scan to Add WeChat</span>
+                </div>
+                <div class="contact-text">
+                    <span class="lang-zh">专业顾问一对一服务</span>
+                    <span class="lang-en">Professional One-on-One Service</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-phone">
+            <i class="fas fa-phone"></i>
+            <span>+1 (415) 123-4567</span>
+        </div>
+    </div>
+
+    <script>
+        // 语言切换功能
+        document.getElementById('langToggle').addEventListener('click', function() {
+            const zhElements = document.querySelectorAll('.lang-zh');
+            const enElements = document.querySelectorAll('.lang-en');
+
+            zhElements.forEach(el => {
+                el.style.display = el.style.display === 'none' ? 'block' : 'none';
+            });
+
+            enElements.forEach(el => {
+                el.style.display = el.style.display === 'block' ? 'none' : 'block';
+            });
+
+            const buttonText = this.querySelector('span');
+            buttonText.textContent = buttonText.textContent === 'English' ? '中文' : 'English';
+        });
+
+        // 平滑滚动
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 表单提交处理
+        document.getElementById('consultationForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            fetch('https://formspree.io/f/mwpqlqoj', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('咨询已提交，我们将尽快与您联系！');
+                    form.reset();
+                } else {
+                    alert('提交失败，请稍后再试');
+                }
+            })
+            .catch(error => {
+                alert('提交过程中发生错误');
+                console.error('Error:', error);
+            });
+        });
+
+        document.getElementById('consultationFormEn')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            fetch('https://formspree.io/f/mwpqlqoj', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Your inquiry has been submitted. We will contact you soon!');
+                    form.reset();
+                } else {
+                    alert('Submission failed, please try again later');
+                }
+            })
+            .catch(error => {
+                alert('Error occurred during submission');
+                console.error('Error:', error);
+            });
+        });
+
+        // 动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.animate');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.visibility = 'visible';
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animateElements.forEach(el => {
+                el.style.visibility = 'hidden';
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
