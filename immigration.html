@@ -117,7 +117,7 @@
             transform: translateY(-1px);
         }
 
-        .dropdown {
+      /*  .dropdown {
             position: absolute;
             top: 100%;
             left: 0;
@@ -131,7 +131,33 @@
             transition: all 0.3s var(--ease-out);
             border: 1px solid var(--gray-200);
             overflow: hidden;
-        }
+        }*/
+
+                /* 1. 下拉菜单位置修正：紧贴"服务项目"下方 */
+.dropdown {
+    position: absolute;
+    top: 100%;          /* 保持在文字底部 */
+    left: auto;          
+    right: 0;            /* 对齐 <li> 右侧 */
+    margin-top: 4px;    /* 与主菜单留一点点空隙 */
+    background: white;
+    min-width: 240px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.3s var(--ease-out);
+    border: 1px solid var(--gray-200);
+    display: flex;          /* 让子项竖排 */
+    flex-direction: column; /* 关键：竖着排 */
+    overflow: hidden;
+}
+
+/* 1. 父级 <li> 加定位 */
+    nav ul li.has-dropdown {
+    position: relative;
+}
 
         .has-dropdown:hover .dropdown {
             opacity: 1;
@@ -139,7 +165,7 @@
             transform: translateY(0);
         }
 
-        .dropdown a {
+      /*  .dropdown a {
             color: var(--dark);
             padding: 16px 24px;
             display: flex;
@@ -149,6 +175,30 @@
             font-size: 0.9rem;
             border-bottom: 1px solid var(--gray-100);
         }
+
+
+        */
+
+        /* 2. 每一项间距 */
+.dropdown a {
+    color: var(--dark);
+    padding: 14px 24px;   /* 上下间距 */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+       /* .dropdown a:last-child {
+            border-bottom: none;
+        }*/
+
+        /* 3. 最后一项无边框 */
+.dropdown a:last-child {
+    border-bottom: none;
+}
+
 
         .dropdown a:hover {
             background: var(--gray-100);
