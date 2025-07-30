@@ -12,6 +12,8 @@
     
     <!-- 图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 纯白 logo 样式 -->
+<link rel="stylesheet" href="logo-white.css">
     
     <style>
         /* ===== 商务色彩系统 ===== */
@@ -41,6 +43,19 @@
             --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
             --ease-in-out: cubic-bezier(0.455, 0.03, 0.515, 0.955);
         }
+
+        /* 纯白 logo 样式 */
+.logo-white {
+    display: inline-block;
+    width: 52px;         /* 可根据视觉微调 */
+    height: 52px;
+    background-image: url('纯白logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    margin-right: 10px;
+}
 
         * {
             margin: 0;
@@ -949,7 +964,7 @@
     <header id="header">
         <div class="nav-container">
             <div class="logo">
-                <i class="fas fa-globe-americas logo-icon"></i>
+                <span class="logo-white"></span>
                 <h1>Nord Capital LLC</h1>
             </div>
             <nav>
