@@ -1,6 +1,3 @@
-(function(){
-  if(window.innerWidth<=768){
-    location.href='mobile.html';   // 手机
-  }
-})();
-
+if (screen.width <= 768) {
+  location.replace('mobile.html');   // 强制跳转
+}
