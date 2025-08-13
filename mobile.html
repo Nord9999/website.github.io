@@ -2,11 +2,17 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Nord Capital LLC - 移动端</title>
+
+    <!-- 字体系统 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* 移动端色彩系统 */
+        /* ===== 移动端色彩系统 ===== */
         :root {
             --primary: #0A2540;
             --secondary: #1E3A8A;
@@ -34,10 +40,10 @@
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
-            padding-bottom: 70px; /* 给底部导航留空间 */
+            padding-bottom: 70px;
         }
 
-        /* 移动端导航 */
+        /* 移动端头部导航 */
         .mobile-header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
@@ -53,11 +59,6 @@
             transition: var(--transition);
         }
 
-        .mobile-header.scrolled {
-            padding: 10px 20px;
-            background: rgba(10, 37, 64, 0.95);
-        }
-
         .mobile-logo {
             display: flex;
             align-items: center;
@@ -67,16 +68,32 @@
         .logo-white {
             width: 40px;
             height: 40px;
-            background-image: url('纯白logo.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
+            background: linear-gradient(45deg, var(--gold), #D4AF37);
             border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 20px;
         }
 
         .mobile-logo h1 {
             font-size: 1.2rem;
             font-weight: 600;
+        }
+
+        .language-toggle-mobile {
+            margin-left: auto;
+            margin-right: 12px;
+            background: rgba(201, 169, 110, 0.1);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 4px 10px;
+            border-radius: 14px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: var(--transition);
         }
 
         .menu-toggle {
@@ -87,6 +104,7 @@
             cursor: pointer;
         }
 
+        /* 移动端导航菜单 */
         .mobile-nav {
             position: fixed;
             top: 0;
@@ -159,70 +177,10 @@
             cursor: pointer;
         }
 
-     
-
-        .language-toggle-mobile {
-    margin-left: auto;
-    margin-right: 12px;   /* 与汉堡菜单留点间距 */
-    background: rgba(201, 169, 110, 0.1);
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    padding: 4px 10px;    /* 原来是 8px 15px */
-    border-radius: 14px;  /* 原来是 20px */
-    font-size: 0.75rem;   /* 原来是 0.9rem */
-    font-weight: 500;
-    transition: var(--transition);
-}
-
-.language-toggle-mobile i {
-    font-size: 0.85em;   /* 让图标与文字同比例缩小 */
-}
-
-@media (max-width: 360px) {
-    .language-toggle-mobile span {
-        display: none;   /* 只保留图标 */
-    }
-    .language-toggle-mobile {
-        padding: 4px 6px;
-    }
-}
-
-        .language-toggle-mobile:hover {
-            background: var(--gold);
-            color: var(--primary);
-        }
-
-        /* 内容区域 */
-        .mobile-section {
-            padding: 80px 20px 40px;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 30px;
-            color: var(--primary);
-            font-size: 1.8rem;
-            position: relative;
-            font-weight: 700;
-        }
-
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--gold), var(--accent));
-            border-radius: 2px;
-        }
-
         /* Hero区域 */
         .mobile-hero {
-            background: 
-                linear-gradient(135deg, rgba(10, 37, 64, 0.9) 0%, rgba(30, 58, 138, 0.8) 100%),
-                url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            background: linear-gradient(135deg, rgba(10, 37, 64, 0.9) 0%, rgba(30, 58, 138, 0.8) 100%),
+                        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
             min-height: 70vh;
             display: flex;
             flex-direction: column;
@@ -279,32 +237,42 @@
             overflow: hidden;
         }
 
-        .mobile-cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .mobile-cta-button:hover::before {
-            left: 100%;
-        }
-
         .mobile-cta-button:hover {
             transform: translateY(-3px);
             box-shadow: var(--shadow-2);
         }
 
+        /* 内容区域 */
+        .mobile-section {
+            padding: 80px 20px 40px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary);
+            font-size: 1.8rem;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--accent));
+            border-radius: 2px;
+        }
+
         /* 关于我们 */
         .about-image-mobile {
             height: 250px;
-            background: 
-                linear-gradient(135deg, rgba(10, 37, 64, 0.8), rgba(30, 58, 138, 0.9)),
-                url('https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            background: linear-gradient(135deg, rgba(10, 37, 64, 0.8), rgba(30, 58, 138, 0.9)),
+                        url('https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
             border-radius: 16px;
             margin-bottom: 30px;
             display: flex;
@@ -487,6 +455,12 @@
             box-shadow: var(--shadow-1);
         }
 
+        .contact-form-mobile h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -532,21 +506,6 @@
             width: 100%;
             position: relative;
             overflow: hidden;
-        }
-
-        .submit-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .submit-button:hover::before {
-            left: 100%;
         }
 
         .submit-button:hover {
@@ -609,6 +568,7 @@
             color: var(--dark);
             font-size: 0.8rem;
             transition: var(--transition);
+            padding: 5px;
         }
 
         .nav-item i {
@@ -716,13 +676,23 @@
         .lang-en {
             display: none;
         }
+
+        /* 响应式微调 */
+        @media (max-width: 360px) {
+            .language-toggle-mobile span {
+                display: none;
+            }
+            .language-toggle-mobile {
+                padding: 4px 6px;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- 移动端头部导航 -->
     <header class="mobile-header" id="mobileHeader">
         <div class="mobile-logo">
-            <div class="logo-white"></div>
+            <div class="logo-white">N</div>
             <h1>Nord Capital LLC</h1>
         </div>
 
@@ -743,17 +713,17 @@
         </button>
         
         <ul>
-            <li><a href="#home" class="active">首页</a></li>
+            <li><a href="mobile.html" class="active">首页</a></li>
             <li><a href="#about">关于我们</a></li>
             <li>
                 <a href="#services" class="dropdown-toggle">
                     服务项目 <i class="fas fa-chevron-down"></i>
                 </a>
                 <div class="mobile-dropdown" id="servicesDropdown">
-                    <a href="immigration.html"><i class="fas fa-passport"></i> 移民服务</a>
-                    <a href="real-estate.html"><i class="fas fa-home"></i> 房地产投资咨询</a>
-                    <a href="education.html"><i class="fas fa-graduation-cap"></i> 留学与教育规划</a>
-                    <a href="local-support.html"><i class="fas fa-hands-helping"></i> 本地事务协助</a>
+                    <a href="immigration-mobile.html"><i class="fas fa-passport"></i> 移民服务</a>
+                    <a href="real-estate-mobile.html"><i class="fas fa-home"></i> 房地产投资咨询</a>
+                    <a href="education-mobile.html"><i class="fas fa-graduation-cap"></i> 留学与教育规划</a>
+                    <a href="local-support-mobile.html"><i class="fas fa-hands-helping"></i> 本地事务协助</a>
                 </div>
             </li>
             <li><a href="#contact">联系我们</a></li>
@@ -799,6 +769,7 @@
     <section class="mobile-section mobile-services" id="services">
         <h2 class="section-title">服务项目</h2>
         
+        <!-- 移民服务 -->
         <div class="service-card-mobile">
             <div class="service-header" onclick="toggleService(this)">
                 <div class="service-icon"><i class="fas fa-passport"></i></div>
@@ -807,102 +778,109 @@
                 <button class="service-toggle"><i class="fas fa-chevron-down"></i></button>
             </div>
             <div class="service-content">
-                <div class="lang-zh">
-                    <ul class="service-list">
+                <ul class="service-list">
+                    <div class="lang-zh">
                         <li><i class="fas fa-check-circle"></i> 美国EB-5投资移民</li>
                         <li><i class="fas fa-check-circle"></i> 加拿大省提名计划</li>
                         <li><i class="fas fa-check-circle"></i> 欧洲黄金签证</li>
                         <li><i class="fas fa-check-circle"></i> 技术移民咨询</li>
-                    </ul>
-                </div>
-                <div class="lang-en">
-                    <ul class="service-list">
+                    </div>
+                    <div class="lang-en">
                         <li><i class="fas fa-check-circle"></i> US EB-5 Investor Visa</li>
                         <li><i class="fas fa-check-circle"></i> Canadian Provincial Nominee</li>
                         <li><i class="fas fa-check-circle"></i> European Golden Visa</li>
-                        <li><i class="fas fa-check-circle"></i> Skilled Immigration</li>
-                    </ul>
+                        <li><i class="fas fa-check-circle"></i> Skilled Immigration Consulting</li>
+                    </div>
+                </ul>
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="immigration-mobile.html" class="mobile-cta-button" style="width: 60%; max-width: 200px; font-size: 0.9rem;">查看详情</a>
                 </div>
             </div>
         </div>
-        
+
+        <!-- 房地产投资咨询 -->
         <div class="service-card-mobile">
             <div class="service-header" onclick="toggleService(this)">
                 <div class="service-icon"><i class="fas fa-home"></i></div>
                 <div class="service-title lang-zh">房地产投资咨询</div>
-                <div class="service-title lang-en">Real Estate</div>
+                <div class="service-title lang-en">Real Estate Investment</div>
                 <button class="service-toggle"><i class="fas fa-chevron-down"></i></button>
             </div>
             <div class="service-content">
-                <div class="lang-zh">
-                    <ul class="service-list">
+                <ul class="service-list">
+                    <div class="lang-zh">
                         <li><i class="fas fa-check-circle"></i> 美国房产投资分析</li>
                         <li><i class="fas fa-check-circle"></i> 加拿大地产投资</li>
                         <li><i class="fas fa-check-circle"></i> 欧洲房产购置</li>
                         <li><i class="fas fa-check-circle"></i> 商业地产投资</li>
-                    </ul>
-                </div>
-                <div class="lang-en">
-                    <ul class="service-list">
+                    </div>
+                    <div class="lang-en">
                         <li><i class="fas fa-check-circle"></i> US Property Analysis</li>
                         <li><i class="fas fa-check-circle"></i> Canadian Real Estate</li>
                         <li><i class="fas fa-check-circle"></i> European Property</li>
                         <li><i class="fas fa-check-circle"></i> Commercial Real Estate</li>
-                    </ul>
+                    </div>
+                </ul>
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="real-estate-mobile.html" class="mobile-cta-button" style="width: 60%; max-width: 200px; font-size: 0.9rem;">查看详情</a>
                 </div>
             </div>
         </div>
-        
+
+        <!-- 留学与教育规划 -->
         <div class="service-card-mobile">
             <div class="service-header" onclick="toggleService(this)">
                 <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
                 <div class="service-title lang-zh">留学与教育规划</div>
-                <div class="service-title lang-en">Education</div>
+                <div class="service-title lang-en">Study Abroad & Education</div>
                 <button class="service-toggle"><i class="fas fa-chevron-down"></i></button>
             </div>
             <div class="service-content">
-                <div class="lang-zh">
-                    <ul class="service-list">
+                <ul class="service-list">
+                    <div class="lang-zh">
                         <li><i class="fas fa-check-circle"></i> 美国名校申请</li>
                         <li><i class="fas fa-check-circle"></i> 加拿大留学规划</li>
                         <li><i class="fas fa-check-circle"></i> 英国顶尖院校申请</li>
                         <li><i class="fas fa-check-circle"></i> 欧洲留学咨询</li>
-                    </ul>
-                </div>
-                <div class="lang-en">
-                    <ul class="service-list">
+                    </div>
+                    <div class="lang-en">
                         <li><i class="fas fa-check-circle"></i> US Top Universities</li>
                         <li><i class="fas fa-check-circle"></i> Canadian Study Planning</li>
                         <li><i class="fas fa-check-circle"></i> UK Elite Institutions</li>
-                        <li><i class="fas fa-check-circle"></i> European Study</li>
-                    </ul>
+                        <li><i class="fas fa-check-circle"></i> European Study Consulting</li>
+                    </div>
+                </ul>
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="education-mobile.html" class="mobile-cta-button" style="width: 60%; max-width: 200px; font-size: 0.9rem;">查看详情</a>
                 </div>
             </div>
         </div>
-        
+
+        <!-- 本地事务协助 -->
         <div class="service-card-mobile">
             <div class="service-header" onclick="toggleService(this)">
                 <div class="service-icon"><i class="fas fa-hands-helping"></i></div>
                 <div class="service-title lang-zh">本地事务协助</div>
-                <div class="service-title lang-en">Local Support</div>
+                <div class="service-title lang-en">Local Support Services</div>
                 <button class="service-toggle"><i class="fas fa-chevron-down"></i></button>
             </div>
             <div class="service-content">
-                <div class="lang-zh">
-                    <ul class="service-list">
+                <ul class="service-list">
+                    <div class="lang-zh">
                         <li><i class="fas fa-check-circle"></i> 银行开户协助</li>
                         <li><i class="fas fa-check-circle"></i> 驾照办理指导</li>
                         <li><i class="fas fa-check-circle"></i> 税务申报服务</li>
                         <li><i class="fas fa-check-circle"></i> 医疗保险咨询</li>
-                    </ul>
-                </div>
-                <div class="lang-en">
-                    <ul class="service-list">
+                    </div>
+                    <div class="lang-en">
                         <li><i class="fas fa-check-circle"></i> Bank Account Assistance</li>
-                        <li><i class="fas fa-check-circle"></i> Driver's License</li>
+                        <li><i class="fas fa-check-circle"></i> Driver's License Guide</li>
                         <li><i class="fas fa-check-circle"></i> Tax Filing Services</li>
-                        <li><i class="fas fa-check-circle"></i> Health Insurance</li>
-                    </ul>
+                        <li><i class="fas fa-check-circle"></i> Health Insurance Consulting</li>
+                    </div>
+                </ul>
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="local-support-mobile.html" class="mobile-cta-button" style="width: 60%; max-width: 200px; font-size: 0.9rem;">查看详情</a>
                 </div>
             </div>
         </div>
@@ -968,9 +946,9 @@
                         <select id="service" name="service">
                             <option value="">请选择服务项目</option>
                             <option value="immigration">移民服务</option>
-                            <option value="real-estate">房地产投资</option>
-                            <option value="education">留学与教育</option>
-                            <option value="local-support">本地事务</option>
+                            <option value="real-estate">房地产投资咨询</option>
+                            <option value="education">留学与教育规划</option>
+                            <option value="local-support">本地事务协助</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -999,17 +977,17 @@
                         <label for="serviceEn">Service</label>
                         <select id="serviceEn" name="service">
                             <option value="">Select Service</option>
-                            <option value="immigration">Immigration</option>
-                            <option value="real-estate">Real Estate</option>
-                            <option value="education">Education</option>
-                            <option value="local-support">Local Support</option>
+                            <option value="immigration">Immigration Services</option>
+                            <option value="real-estate">Real Estate Investment</option>
+                            <option value="education">Study Abroad & Education</option>
+                            <option value="local-support">Local Support Services</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="messageEn">Message</label>
                         <textarea id="messageEn" name="message" placeholder="Describe your needs..." required></textarea>
                     </div>
-                    <button type="submit" class="submit-button">Submit</button>
+                    <button type="submit" class="submit-button">Submit Inquiry</button>
                 </form>
             </div>
         </div>
@@ -1032,25 +1010,30 @@
 
     <!-- 底部导航 -->
     <nav class="bottom-nav">
-        <a href="#home" class="nav-item active">
+        <a href="mobile.html" class="nav-item active">
             <i class="fas fa-home"></i>
             <span class="lang-zh">首页</span>
             <span class="lang-en">Home</span>
         </a>
-        <a href="#services" class="nav-item">
-            <i class="fas fa-concierge-bell"></i>
-            <span class="lang-zh">服务</span>
-            <span class="lang-en">Services</span>
+        <a href="immigration-mobile.html" class="nav-item">
+            <i class="fas fa-passport"></i>
+            <span class="lang-zh">移民</span>
+            <span class="lang-en">Immigration</span>
         </a>
-        <a href="#contact" class="nav-item">
-            <i class="fas fa-phone-alt"></i>
-            <span class="lang-zh">联系</span>
-            <span class="lang-en">Contact</span>
+        <a href="real-estate-mobile.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span class="lang-zh">房产</span>
+            <span class="lang-en">Real Estate</span>
         </a>
-        <a href="#" class="nav-item" id="chatButton">
-            <i class="fas fa-comments"></i>
-            <span class="lang-zh">咨询</span>
-            <span class="lang-en">Chat</span>
+        <a href="education-mobile.html" class="nav-item">
+            <i class="fas fa-graduation-cap"></i>
+            <span class="lang-zh">教育</span>
+            <span class="lang-en">Education</span>
+        </a>
+        <a href="local-support-mobile.html" class="nav-item">
+            <i class="fas fa-hands-helping"></i>
+            <span class="lang-zh">本地</span>
+            <span class="lang-en">Local</span>
         </a>
     </nav>
 
@@ -1062,9 +1045,7 @@
     <div class="contact-popup" id="contactPopup">
         <h4 class="lang-zh">微信咨询</h4>
         <h4 class="lang-en">WeChat Consultation</h4>
-        <div class="qr-code">
-            <!-- 二维码图片已通过CSS背景设置 -->
-        </div>
+        <div class="qr-code"></div>
         <a href="tel:6264102909" class="contact-phone">
             <i class="fas fa-phone"></i> 6264102909
         </a>
@@ -1200,16 +1181,13 @@
                 // 滚动到对应区域
                 const targetId = this.getAttribute('href');
                 if(targetId !== '#') {
-                    document.querySelector(targetId).scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    window.location.href = targetId;
                 }
             });
         });
         
         // 点击聊天按钮显示客服组件
-        document.getElementById('chatButton').addEventListener('click', (e) => {
+        document.getElementById('chatButton')?.addEventListener('click', (e) => {
             e.preventDefault();
             contactPopup.classList.toggle('active');
         });
