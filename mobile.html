@@ -17,7 +17,9 @@
             --gray-100: #F3F4F6;
             --gray-200: #E5E7EB;
             --shadow-1: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-2: 0 5px 15px rgba(0, 0, 0, 0.15);
             --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition: all 0.3s var(--ease-out);
         }
 
         * {
@@ -47,7 +49,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow-2);
+            transition: var(--transition);
+        }
+
+        .mobile-header.scrolled {
+            padding: 10px 20px;
+            background: rgba(10, 37, 64, 0.95);
         }
 
         .mobile-logo {
@@ -59,14 +67,11 @@
         .logo-white {
             width: 40px;
             height: 40px;
-            background-color: white;
+            background-image: url('纯白logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--primary);
-            font-size: 14px;
         }
 
         .mobile-logo h1 {
@@ -115,7 +120,7 @@
             text-decoration: none;
             border-radius: 8px;
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .mobile-nav a:hover, .mobile-nav a.active {
@@ -165,6 +170,12 @@
             border-radius: 20px;
             font-size: 0.9rem;
             font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .language-toggle-mobile:hover {
+            background: var(--gold);
+            color: var(--primary);
         }
 
         /* 内容区域 */
@@ -195,7 +206,9 @@
 
         /* Hero区域 */
         .mobile-hero {
-            background: linear-gradient(135deg, rgba(10, 37, 64, 0.9) 0%, rgba(30, 58, 138, 0.8) 100%);
+            background: 
+                linear-gradient(135deg, rgba(10, 37, 64, 0.9) 0%, rgba(30, 58, 138, 0.8) 100%),
+                url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
             min-height: 70vh;
             display: flex;
             flex-direction: column;
@@ -203,6 +216,17 @@
             text-align: center;
             color: white;
             padding: 0 20px;
+            position: relative;
+        }
+
+        .mobile-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 0%, rgba(201, 169, 110, 0.1) 100%);
         }
 
         .mobile-hero h2 {
@@ -210,12 +234,16 @@
             margin-bottom: 20px;
             font-weight: 700;
             line-height: 1.2;
+            position: relative;
+            z-index: 1;
         }
 
         .mobile-hero p {
             font-size: 1.1rem;
             margin-bottom: 30px;
             opacity: 0.9;
+            position: relative;
+            z-index: 1;
         }
 
         .mobile-cta-button {
@@ -227,22 +255,42 @@
             border-radius: 50px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s var(--ease-out);
+            transition: var(--transition);
             box-shadow: var(--shadow-1);
             display: inline-block;
             width: 80%;
             max-width: 280px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .mobile-cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .mobile-cta-button:hover::before {
+            left: 100%;
         }
 
         .mobile-cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow-2);
         }
 
         /* 关于我们 */
         .about-image-mobile {
             height: 250px;
-            background: linear-gradient(135deg, rgba(10, 37, 64, 0.8), rgba(30, 58, 138, 0.9));
+            background: 
+                linear-gradient(135deg, rgba(10, 37, 64, 0.8), rgba(30, 58, 138, 0.9)),
+                url('https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
             border-radius: 16px;
             margin-bottom: 30px;
             display: flex;
@@ -253,6 +301,7 @@
             font-weight: 700;
             text-align: center;
             padding: 20px;
+            box-shadow: var(--shadow-1);
         }
 
         .about-text h3 {
@@ -278,6 +327,12 @@
             margin-bottom: 20px;
             box-shadow: var(--shadow-1);
             overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .service-card-mobile:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-2);
         }
 
         .service-header {
@@ -294,6 +349,7 @@
             margin-right: 15px;
             width: 40px;
             text-align: center;
+            color: var(--gold);
         }
 
         .service-title {
@@ -307,6 +363,7 @@
             border: none;
             color: white;
             font-size: 1.2rem;
+            transition: var(--transition);
         }
 
         .service-content {
@@ -333,6 +390,12 @@
             color: var(--dark);
             font-size: 0.95rem;
             border-bottom: 1px solid var(--gray-100);
+            transition: var(--transition);
+        }
+
+        .service-list li:hover {
+            background: rgba(201, 169, 110, 0.05);
+            padding-left: 5px;
         }
 
         .service-list li:last-child {
@@ -351,6 +414,7 @@
             border-radius: 16px;
             padding: 25px;
             margin-bottom: 30px;
+            box-shadow: var(--shadow-1);
         }
 
         .contact-info-mobile h3 {
@@ -392,7 +456,7 @@
             background: var(--primary);
             color: white;
             border-radius: 50%;
-            transition: all 0.3s var(--ease-out);
+            transition: var(--transition);
             font-size: 1.1rem;
         }
 
@@ -406,6 +470,7 @@
             background: var(--gray-100);
             border-radius: 16px;
             padding: 25px;
+            box-shadow: var(--shadow-1);
         }
 
         .form-group {
@@ -429,6 +494,15 @@
             border-radius: 8px;
             font-size: 1rem;
             background: white;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--gold);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.1);
         }
 
         .submit-button {
@@ -440,13 +514,30 @@
             border-radius: 50px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s var(--ease-out);
+            transition: var(--transition);
             width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-button:hover::before {
+            left: 100%;
         }
 
         .submit-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow-2);
         }
 
         /* 页脚 */
@@ -468,6 +559,7 @@
         .footer-links a {
             color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
+            transition: var(--transition);
         }
 
         .footer-links a:hover {
@@ -502,15 +594,22 @@
             text-decoration: none;
             color: var(--dark);
             font-size: 0.8rem;
+            transition: var(--transition);
         }
 
         .nav-item i {
             font-size: 1.2rem;
             margin-bottom: 4px;
+            transition: var(--transition);
         }
 
-        .nav-item.active {
+        .nav-item.active, .nav-item:active {
             color: var(--primary);
+        }
+
+        .nav-item.active i, .nav-item:active i {
+            color: var(--gold);
+            transform: scale(1.1);
         }
 
         /* 客服组件 */
@@ -530,6 +629,11 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             z-index: 999;
             cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .contact-fab:hover {
+            transform: scale(1.1);
         }
 
         .contact-popup {
@@ -543,11 +647,11 @@
             z-index: 998;
             display: none;
             width: 280px;
+            animation: fadeIn 0.3s ease;
         }
 
         .contact-popup.active {
             display: block;
-            animation: fadeIn 0.3s ease;
         }
 
         .contact-popup h4 {
@@ -568,6 +672,7 @@
             border-radius: 8px;
             font-size: 0.8rem;
             color: #666;
+            background: url('兰姐二维码.jpg') center/cover no-repeat;
         }
 
         .contact-phone {
@@ -580,6 +685,12 @@
             margin-top: 15px;
             text-decoration: none;
             font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .contact-phone:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
         }
 
         @keyframes fadeIn {
@@ -595,9 +706,9 @@
 </head>
 <body>
     <!-- 移动端头部导航 -->
-    <header class="mobile-header">
+    <header class="mobile-header" id="mobileHeader">
         <div class="mobile-logo">
-            <div class="logo-white">NC</div>
+            <div class="logo-white"></div>
             <h1>Nord Capital LLC</h1>
         </div>
         <button class="menu-toggle" id="menuToggle">
@@ -822,7 +933,7 @@
         <div class="contact-form-mobile">
             <div class="lang-zh">
                 <h3>咨询表单</h3>
-                <form id="mobileContactForm">
+                <form id="mobileContactForm" action="https://formspree.io/f/mwpqlqoj" method="POST">
                     <div class="form-group">
                         <label for="name">姓名</label>
                         <input type="text" id="name" name="name" required>
@@ -854,7 +965,7 @@
             </div>
             <div class="lang-en">
                 <h3>Inquiry Form</h3>
-                <form id="mobileContactFormEn">
+                <form id="mobileContactFormEn" action="https://formspree.io/f/mwpqlqoj" method="POST">
                     <div class="form-group">
                         <label for="nameEn">Name</label>
                         <input type="text" id="nameEn" name="name" required>
@@ -935,8 +1046,7 @@
         <h4 class="lang-zh">微信咨询</h4>
         <h4 class="lang-en">WeChat Consultation</h4>
         <div class="qr-code">
-            <span class="lang-zh">扫码添加微信</span>
-            <span class="lang-en">Scan QR Code</span>
+            <!-- 二维码图片已通过CSS背景设置 -->
         </div>
         <a href="tel:6264102909" class="contact-phone">
             <i class="fas fa-phone"></i> 6264102909
@@ -952,15 +1062,27 @@
         const servicesDropdown = document.getElementById('servicesDropdown');
         const contactFab = document.getElementById('contactFab');
         const contactPopup = document.getElementById('contactPopup');
+        const mobileHeader = document.getElementById('mobileHeader');
+        
+        // 滚动检测
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                mobileHeader.classList.add('scrolled');
+            } else {
+                mobileHeader.classList.remove('scrolled');
+            }
+        });
         
         // 切换菜单显示
         menuToggle.addEventListener('click', () => {
             mobileNav.classList.add('active');
+            document.body.style.overflow = 'hidden';
         });
         
         // 关闭菜单
         closeMenu.addEventListener('click', () => {
             mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
         });
         
         // 服务项目下拉菜单
@@ -1021,23 +1143,51 @@
         // 表单提交
         document.getElementById('mobileContactForm')?.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('咨询已提交，我们将尽快与您联系！');
-            this.reset();
+            const form = e.target;
+            fetch('https://formspree.io/f/mwpqlqoj', {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(response => {
+                alert(response.ok ? '咨询已提交，我们将尽快与您联系！' : '提交失败，请稍后再试');
+                form.reset();
+            })
+            .catch(() => alert('提交过程中发生错误'));
         });
         
         document.getElementById('mobileContactFormEn')?.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Your inquiry has been submitted. We will contact you soon!');
-            this.reset();
+            const form = e.target;
+            fetch('https://formspree.io/f/mwpqlqoj', {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(response => {
+                alert(response.ok ? 'Your inquiry has been submitted. We will contact you soon!' : 'Submission failed, please try again later');
+                form.reset();
+            })
+            .catch(() => alert('An error occurred during submission'));
         });
         
         // 底部导航激活状态
         document.querySelectorAll('.bottom-nav a').forEach(link => {
             link.addEventListener('click', function(e) {
+                e.preventDefault();
                 document.querySelectorAll('.bottom-nav a').forEach(item => {
                     item.classList.remove('active');
                 });
                 this.classList.add('active');
+                
+                // 滚动到对应区域
+                const targetId = this.getAttribute('href');
+                if(targetId !== '#') {
+                    document.querySelector(targetId).scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
         
